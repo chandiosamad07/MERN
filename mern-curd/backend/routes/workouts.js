@@ -22,5 +22,10 @@ router.get('/:id' ,(req , res)=>{
     res.json({mesg:'DELETE a workout'})
  })
 
+//Updata a workout
+
+router.patch('/:id',(req ,res)=>{
+    res.json({mesg:'Update a workout'})
+})
 
 module.exports = router
