@@ -17,5 +17,10 @@ router.get('/:id' ,(req , res)=>{
     res.json({mesg:'POST a new workout'})
  })
 
+ //DELETE a workout
+ router.delete('/:id',(req ,res)=>{
+    res.json({mesg:'DELETE a workout'})
+ })
+
 
 module.exports = router
