@@ -12,5 +12,10 @@ router.get('/:id' ,(req , res)=>{
     res.json({mesg:"Get a Single workout"})
  })
  
+ //POST a new WorkOut
+ router.post('/' ,(req ,res)=>{
+    res.json({mesg:'POST a new workout'})
+ })
+
 
 module.exports = router
