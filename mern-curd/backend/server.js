@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI)
 
     // listen for requests
 app.listen(process.env.PORT,()=>{
-    console.log("Listening on port" , process.env.PORT)
+    console.log("Listening on port" , process.env.PORT||3000)
 })
 })
 .catch((error)=>{

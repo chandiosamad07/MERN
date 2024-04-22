@@ -1,13 +1,11 @@
-import React from 'react'
-import workoutModel from '../../../backend/models/workoutModel'
+const WorkoutDetails = ({ workout }) => {
 
-const WorkoutDetails = ({workout}) => {
   return (
-    <div className='workout-details'>
-        <h4>{workoutModel.title}</h4>
-        <p><strong>Load (Kg):</strong>{workoutModel.load}</p>
-        <p><strong>Reps:</strong>{workoutModel.resp}</p>
-        <p>{workout.createdAt}</p>
+    <div className="workout-details">
+      <h4>{workout.title}</h4>
+      <p><strong>Load (kg): </strong>{workout.load}</p>
+      <p><strong>Number of reps: </strong>{workout.reps}</p>
+      <p>{workout.createdAt}</p>
     </div>
   )
 }

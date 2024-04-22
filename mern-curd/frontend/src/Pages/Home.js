@@ -1,29 +1,47 @@
-import { useEffect ,useState } from "react"
-
+import React, { useEffect, useState } from "react";
+import WorkoutDetails from '../Componets/WorkoutDetails';
 
 const Home = () => {
-  const [workouts , setWorkouts] = useState(null)
-  
-  useEffect(()=>{
-    const fetchWorkouts = async () =>{
-      const response = await fetch('/api/workouts')
-      const json = await response.json()
+  const [workouts, setWorkouts] = useState(null);
+  const [error, setError] = useState(null);
 
-      if(response.ok){
-        setWorkouts(json)
+  useEffect(() => {
+    const fetchWorkouts = async () => {
+      try {
+        const response = await fetch('/api/workouts');
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch workouts');
+        }
+
+        // Parse the response as JSON
+        const json = await response.json();
+        
+        // Update state with the parsed JSON data
+        setWorkouts(json);
+      } catch (error) {
+        // Handle any errors that occur during the fetch or parsing
+        console.error("Error fetching or parsing data:", error);
+        setError(error.message);
       }
-    }
-    fetchWorkouts()
-  },[])
+    };
+
+    fetchWorkouts();
+  }, []);
+
   return (
-    <div className='Home'>
+    <div className="home">
+      {/* Display error message if there's an error */}
+      {error && <div>Error: {error}</div>}
+      
+      {/* Display workouts if available */}
       <div className="workouts">
-        {workouts && workouts.map((workout) =>(
-          <p key={workout._id}>{workout.title}</p>
+        {workouts && workouts.map(workout => (
+          <WorkoutDetails key={workout._id} workout={workout} />
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
